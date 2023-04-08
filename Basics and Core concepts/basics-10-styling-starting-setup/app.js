@@ -9,11 +9,11 @@ Vue.createApp({
     methods: {
         selectBox(box){
             if(box == 'A'){
-                this.isSelectBoxA = true;
+                this.isSelectBoxA = !this.isSelectBoxA;
             }else if(box == 'B'){
-                this.isSelectBoxB = true;
+                this.isSelectBoxB = !this.isSelectBoxB;
             }else{
-                this.isSelectBoxC = true;
+                this.isSelectBoxC = !this.isSelectBoxC;
             }
         }
     }
