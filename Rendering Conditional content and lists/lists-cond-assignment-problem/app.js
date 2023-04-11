@@ -8,11 +8,19 @@ const app = Vue.createApp({
     },
     methods:{
         addTask(){
-            this.tasks.push(this.value)
-            this.value = '';
+            if(this.value != ''){
+                this.tasks.push(this.value)
+                this.value = '';
+            }
+            
         },
         showHandler(){
             this.isVisible = !this.isVisible;
+        }
+    },
+    computed:{
+        buttonText(){
+            return this.isVisible ? 'Hide' : 'Show'
         }
     }
 });
