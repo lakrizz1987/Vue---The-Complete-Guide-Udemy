@@ -2,13 +2,17 @@ const app = Vue.createApp({
     data() {
         return {
             tasks: [],
-            value: ''
+            value: '',
+            isVisible: true
         }
     },
     methods:{
         addTask(){
             this.tasks.push(this.value)
             this.value = '';
+        },
+        showHandler(){
+            this.isVisible = !this.isVisible;
         }
     }
 });
