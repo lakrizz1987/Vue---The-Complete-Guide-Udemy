@@ -1,11 +1,18 @@
 const app = Vue.createApp({
-    data(){
+    data() {
         return {
-            playerHealth:100,
-            monsterHealth:100,
+            playerHealth: 100,
+            monsterHealth: 100,
         }
     },
-    
+    computed: {
+        playerHealthBarStyle() {
+            return { width: this.playerHealth + '%' }
+        },
+        monsterHealthBarStyle() {
+            return { width: this.monsterHealth + '%' }
+        }
+    }
 });
 
 app.mount('#game')
