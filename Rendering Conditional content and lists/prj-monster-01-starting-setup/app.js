@@ -34,8 +34,10 @@ const app = Vue.createApp({
             this.monsterHealth -= randomNumber(6, 15)
             if (this.monsterHealth < 0) {
                 this.monsterHealth = 0;
+                return
+            } else {
+                this.monsterAttack()
             }
-            this.monsterAttack()
         },
         monsterAttack() {
             this.playerHealth -= randomNumber(6, 15)
