@@ -7,7 +7,24 @@ const app = Vue.createApp({
         return {
             playerHealth: 100,
             monsterHealth: 100,
-            rounds: 0
+            rounds: 0,
+            gameOver: false,
+            condition: null
+        }
+    },
+    watch: {
+       
+        monsterHealth(value){
+            if (value <= 0 ) {
+                condition = 'player';
+                this.gameOver = true;
+            } else if (value > 0 && this.playerHealth == 0) {
+                condition = 'monster'
+                this.gameOver = true;
+            } else if(value == 0 && this.playerHealth == 0) {
+                condition = 'draw'
+                this.gameOver = true;
+            }
         }
     },
     computed: {
@@ -52,6 +69,18 @@ const app = Vue.createApp({
                 this.monsterHealth = 0;
             }
             this.monsterAttack()
+        },
+        health(){
+            this.rounds += 1;
+            this.playerHealth += randomNumber(6, 8);
+            if(this.playerHealth > 100){
+                this.playerHealth = 100;
+            }
+            this.monsterAttack()
+        },
+        surrender(){
+            this.gameOver = true;
+            this.condition = 'monster'
         }
     }
 });

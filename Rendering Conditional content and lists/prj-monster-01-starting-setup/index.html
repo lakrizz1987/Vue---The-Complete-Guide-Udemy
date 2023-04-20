@@ -29,10 +29,10 @@
       </div>
     </section>
     <section id="controls">
-      <button @click="playerAttack">ATTACK</button>
-      <button :disabled="roundsCounter" @click="specialAttack">SPECIAL ATTACK</button>
-      <button>HEAL</button>
-      <button>SURRENDER</button>
+      <button :disabled="gameOver" @click="playerAttack">ATTACK</button>
+      <button :disabled="roundsCounter || gameOver" @click="specialAttack">SPECIAL ATTACK</button>
+      <button :disabled="gameOver" @click="health">HEAL</button>
+      <button :disabled="gameOver" @click="surrender">SURRENDER</button>
     </section>
     <section id="log" class="container">
       <h2>Battle Log</h2>
