@@ -16,13 +16,13 @@ const app = Vue.createApp({
        
         monsterHealth(value){
             if (value <= 0 ) {
-                condition = 'player';
+                this.condition = 'player';
                 this.gameOver = true;
             } else if (value > 0 && this.playerHealth == 0) {
-                condition = 'monster'
+                this.condition = 'monster'
                 this.gameOver = true;
             } else if(value == 0 && this.playerHealth == 0) {
-                condition = 'draw'
+                this.condition = 'draw'
                 this.gameOver = true;
             }
         }

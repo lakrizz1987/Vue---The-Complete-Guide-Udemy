@@ -28,11 +28,17 @@
         <div class="healthbar__value" :style="playerHealthBarStyle"></div>
       </div>
     </section>
-    <section id="controls">
+    <section v-if="!gameOver" id="controls">
       <button :disabled="gameOver" @click="playerAttack">ATTACK</button>
       <button :disabled="roundsCounter || gameOver" @click="specialAttack">SPECIAL ATTACK</button>
       <button :disabled="gameOver" @click="health">HEAL</button>
       <button :disabled="gameOver" @click="surrender">SURRENDER</button>
+    </section>
+    <section v-else>
+      <h2>Game Over</h2>
+      <h3 v-if="condition === 'player'">Player win!</h3>
+      <h3 v-else-if="condition === 'monster'">Monster win!</h3>
+      <h3 v-else-if="condition === 'draw'">DRAW!</h3>
     </section>
     <section id="log" class="container">
       <h2>Battle Log</h2>
