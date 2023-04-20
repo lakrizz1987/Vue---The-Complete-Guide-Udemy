@@ -9,7 +9,8 @@ const app = Vue.createApp({
             monsterHealth: 100,
             rounds: 0,
             gameOver: false,
-            condition: null
+            condition: null,
+            log:[]
         }
     },
     watch: {
@@ -48,7 +49,9 @@ const app = Vue.createApp({
     methods: {
         playerAttack() {
             this.rounds += 1;
-            this.monsterHealth -= randomNumber(6, 15)
+            let randomNum = randomNumber(6, 15)
+            this.log.unshift(`Player attack with ${randomNum} damage`)
+            this.monsterHealth -= randomNum
             if (this.monsterHealth < 0) {
                 this.monsterHealth = 0;
                 return
@@ -57,14 +60,18 @@ const app = Vue.createApp({
             }
         },
         monsterAttack() {
-            this.playerHealth -= randomNumber(6, 15)
+            let randomNum = randomNumber(6, 15)
+            this.log.unshift(`Monster attack with ${randomNum} damage`)
+            this.playerHealth -= randomNum
             if (this.playerHealth < 0) {
                 this.playerHealth = 0;
             }
         },
         specialAttack() {
             this.rounds = 0;
-            this.monsterHealth -= randomNumber(10, 25)
+            let randomNum = randomNumber(10, 25)
+            this.log.unshift(`Player attack with SPECIAL ${randomNum} damage`)
+            this.monsterHealth -= randomNum
             if (this.monsterHealth < 0) {
                 this.monsterHealth = 0;
             }
@@ -72,15 +79,25 @@ const app = Vue.createApp({
         },
         health(){
             this.rounds += 1;
-            this.playerHealth += randomNumber(6, 8);
+            let randomNum = randomNumber(6, 10)
+            this.log.unshift(`Player add  ${randomNum} health`)
+            this.playerHealth += randomNum
             if(this.playerHealth > 100){
                 this.playerHealth = 100;
             }
             this.monsterAttack()
         },
         surrender(){
+            this.log.unshift(`Player SURRENDER!`)
             this.gameOver = true;
             this.condition = 'monster'
+        },
+        restart(){
+            this.gameOver = false;
+            this.condition = null;
+            this.playerHealth = 100;
+            this.monsterHealth = 100;
+            this.log = [];
         }
     }
 });
