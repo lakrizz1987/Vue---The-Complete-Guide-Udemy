@@ -3,7 +3,7 @@
     <header>
       <h1>My Friends</h1>
     </header>
-    <add-contact></add-contact>
+    <add-contact @addNewContact="addNewFriend"></add-contact>
     <ul>
       <friend-contact
         v-for="friend in friends"
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import AddContact from './components/AddContact.vue';
+import AddContact from "./components/AddContact.vue";
 export default {
   components: { AddContact },
   data() {
@@ -37,6 +37,16 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    addNewFriend(name, phone, email) {
+      this.friends.push({
+        id: Math.random().toString(),
+        name: name,
+        phone: phone,
+        email: email,
+      });
+    },
   },
 };
 </script>
