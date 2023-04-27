@@ -11,20 +11,27 @@
         <strong>Email:</strong>
         {{ emailAddres }}
       </li>
+      <button @click="$emit('onDelete',id)">Delete</button>
     </ul>
   </li>
 </template>
 
 <script>
 export default {
+  emits:['onDelete'],
   props:[
+
     "name",
     "phoneNumber",
-    "emailAddres"
+    "emailAddres",
+    "id"
+
   ],
   data() {
     return {
+
       detailsAreVisible: false,
+
     };
   },
   methods: {

@@ -5,12 +5,13 @@
     </header>
     <add-contact @addNewContact="addNewFriend"></add-contact>
     <ul>
-      <friend-contact
+      <friend-contact @onDelete="deleteFriend"
         v-for="friend in friends"
         :key="friend.id"
         :name="friend.name"
         :phone-number="friend.phone"
         :email-addres="friend.email"
+        :id="friend.id"
       ></friend-contact>
     </ul>
   </section>
@@ -47,6 +48,9 @@ export default {
         email: email,
       });
     },
+    deleteFriend(id){
+      this.friends = this.friends.filter(friend=> friend.id !== id)
+    }
   },
 };
 </script>
